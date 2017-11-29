@@ -1,5 +1,8 @@
 package edu.inlab.katas;
 
+import com.sun.istack.internal.NotNull;
+import com.sun.istack.internal.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,18 +11,51 @@ import java.util.List;
  */
 public class ListTask {
 
-    List<String> tasks;
 
-    public ListTask() {
-        tasks=new ArrayList<String>();
+    private class Task {
+        String name;
+        boolean done;
     }
 
-    public void addTask(String task) {
+    List<Task> tasks;
+
+    public ListTask() {
+        tasks=new ArrayList<Task>();
+    }
+
+    public void addTask(String name) {
+        Task task = new Task();
+        task.name = name;
+
         tasks.add(task);
     }
 
+
+    public void markAsDone(String taskName) {
+        for (Task task: tasks) {
+            if(taskName.equals(task.name)) {
+                task.done = true;
+            }
+        }
+    }
+
+    public boolean isDone(String taskName) {
+        for (Task task: tasks) {
+            if(taskName.equals(task.name)) {
+                return task.done;
+            }
+        }
+        return false;
+    }
+
     public List<String> getList() {
-        return tasks;
+        List<String> toRet = new ArrayList<>();
+
+        for (Task task: tasks) {
+            toRet.add(task.name);
+        }
+
+        return toRet;
     }
 
 }
