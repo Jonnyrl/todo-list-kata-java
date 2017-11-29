@@ -63,4 +63,19 @@ public class ListTasks {
         //Assert
         assertEquals(testTasks,returnedTasks);
     }
+
+    @Test
+    public void whenAddTask_ThenTaskIsAdded() {
+        //Arrange
+        taskerLister = new ListTask();
+        Integer sizeInArrenge = taskerLister.getList().size();
+
+        //Act
+        taskerLister.addTask("testTask");
+        List<String> returnedTasks = taskerLister.getList();
+        int sizeAfterAct=returnedTasks.size();
+
+        //Assert
+        assertEquals(sizeAfterAct,sizeInArrenge+1);
+    }
 }
